@@ -17,3 +17,7 @@ Route::get('/employee', [EmployeeController::class, 'index'])
 
 Route::get('/admin', [DashboardController::class, 'index'])
     ->name('admin.index');
+    
+ Route::get('/client/conferences/{id}', [ClientController::class, 'show'])
+    ->whereNumber('id')
+    ->name('client.show');
