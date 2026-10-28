@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <title>Administratoriaus posistemis</title>
-</head>
-<body>
-    <h1>Administratoriaus posistemis</h1>
-    <p>Čia vėliau bus nuorodos į naudotojų ir konferencijų valdymą.</p>
+@extends('layouts.app')
 
-    <a href="{{ route('home') }}">Grįžti į pagrindinį puslapį</a>
-</body>
-</html>
+@section('title', __('messages.admin'))
+
+@section('content')
+    <h1>{{ __('messages.admin') }}</h1>
+    <p>{{ __('messages.admin_description') }}</p>
+@endsection

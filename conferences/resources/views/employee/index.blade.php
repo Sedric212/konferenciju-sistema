@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <title>Darbuotojo posistemis</title>
-</head>
-<body>
-    <h1>Darbuotojo posistemis</h1>
-    <p>Čia vėliau bus visos konferencijos ir jų dalyvių peržiūra.</p>
+@extends('layouts.app')
 
-    <a href="{{ route('home') }}">Grįžti į pagrindinį puslapį</a>
-</body>
-</html>
+@section('title', __('messages.employee'))
+
+@section('content')
+    <h1>{{ __('messages.employee') }}</h1>
+    <p>{{ __('messages.employee_description') }}</p>
+@endsection

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="lt">
-<head>
-    <meta charset="UTF-8">
-    <title>Kliento posistemis</title>
-</head>
-<body>
-    <h1>Kliento posistemis</h1>
-    <p>Čia vėliau bus rodomos būsimos konferencijos.</p>
+@extends('layouts.app')
 
-    <a href="{{ route('home') }}">Grįžti į pagrindinį puslapį</a>
-</body>
-</html>
+@section('title', __('messages.client'))
+
+@section('content')
+    <h1>{{ __('messages.client') }}</h1>
+    <p>{{ __('messages.client_description') }}</p>
+@endsection
