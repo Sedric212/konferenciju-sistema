@@ -15,6 +15,18 @@ class ConferenceData
                 'date' => '2026-12-10',
                 'time' => '10:00',
                 'address' => 'Vilniaus g. 10, Vilnius',
+                'participants' => [
+                    [
+                        'first_name' => 'Mantas',
+                        'last_name' => 'Kazlauskas',
+                        'email' => 'mantas@example.com',
+                    ],
+                    [
+                        'first_name' => 'Gabija',
+                        'last_name' => 'Petrauskaitė',
+                        'email' => 'gabija@example.com',
+                    ],
+                ],
             ],
             [
                 'id' => 2,
@@ -24,6 +36,7 @@ class ConferenceData
                 'date' => '2026-12-15',
                 'time' => '14:00',
                 'address' => 'Kauno g. 15, Vilnius',
+                'participants' => [],
             ],
         ];
     }
