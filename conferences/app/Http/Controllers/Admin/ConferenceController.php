@@ -10,19 +10,37 @@ class ConferenceController extends Controller
 {
     public function index()
     {
-        return view('admin.conferences.index', [
-            'conferences' => ConferenceData::all(),
-        ]);
+        return view('admin.conferences.index', ['conferences' => ConferenceData::all()]);
     }
+
     public function create()
     {
         return view('admin.conferences.create');
     }
 
-        public function store(ConferenceRequest $request)
+    public function store(ConferenceRequest $request)
     {
         ConferenceData::add($request->validated());
 
-        return redirect()->route('admin.conferences.index');
+        return to_route('admin.conferences.index')->with('status', __('messages.saved'));
     }
+
+    public function edit(int $id)
+    {
+        return view('admin.conferences.edit', ['conference' => ConferenceData::find($id)]);
     }
+
+    public function update(ConferenceRequest $request, int $id)
+    {
+        ConferenceData::update($id, $request->validated());
+
+        return to_route('admin.conferences.index')->with('status', __('messages.saved'));
+    }
+
+    public function destroy(int $id)
+    {
+        ConferenceData::remove($id);
+
+        return to_route('admin.conferences.index')->with('status', __('messages.deleted'));
+    }
+}

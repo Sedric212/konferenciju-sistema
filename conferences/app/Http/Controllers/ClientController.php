@@ -3,26 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Data\ConferenceData;
+use App\Data\UserData;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        $conferences = ConferenceData::all();
+        return view('client.index', ['conferences' => array_filter(ConferenceData::all(), [ConferenceData::class, 'upcoming'])]);
+    }
 
-        return view('client.index', [
-            'conferences' => $conferences,
-        ]);
-     }
-        public function show(int $id)
+    public function show(int $id)
     {
-        $conference = collect(ConferenceData::all())
-            ->firstWhere('id', $id);
+        $conference = ConferenceData::find($id);
+        abort_unless(ConferenceData::upcoming($conference), 404);
 
-        abort_if($conference === null, 404);
+        return view('client.show', compact('conference'));
+    }
 
-        return view('client.show', [
-            'conference' => $conference,
-        ]);
+    public function register(int $id)
+    {
+        $event = ConferenceData::find($id);
+        abort_unless(ConferenceData::upcoming($event), 404);
+        if (! in_array(UserData::CLIENT, $event['participants'], true)) {
+            $event['participants'][] = UserData::CLIENT;
+            ConferenceData::update($id, ['participants' => $event['participants']]);
+        }
+
+        return to_route('client.show', $id)->with('status', __('messages.registered'));
     }
 }

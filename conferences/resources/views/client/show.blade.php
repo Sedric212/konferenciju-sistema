@@ -20,6 +20,7 @@
         <dd>{{ $conference['address'] }}</dd>
     </dl>
 
+    @include('client.register')
     <a href="{{ route('client.index') }}">
         {{ __('messages.back_to_conferences') }}
     </a>

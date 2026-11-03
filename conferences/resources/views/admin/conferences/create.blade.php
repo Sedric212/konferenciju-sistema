@@ -9,7 +9,7 @@
         @csrf
         @include('admin.conferences.fields')
 
-        <button type="submit">{{ __('messages.save') }}</button>
+        <button class="btn btn-primary" type="submit">{{ __('messages.save') }}</button>
     </form>
 
     <p>

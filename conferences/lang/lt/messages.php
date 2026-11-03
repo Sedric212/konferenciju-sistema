@@ -39,9 +39,32 @@ return [
 
     'manage_conferences' => 'Konferencijų valdymas',
 
-       'create_conference' => 'Sukurti konferenciją',
+    'create_conference' => 'Sukurti konferenciją',
     'description' => 'Aprašymas',
     'speakers' => 'Lektoriai',
     'save' => 'Išsaugoti',
-   
-    ];
+
+    'portal' => 'Konferencijų registracijos portalas',
+    'pick_role' => 'Pasirinkite, kaip norite naudotis sistema.',
+    'client_intro' => 'Raskite artėjančius renginius ir rezervuokite vietą.',
+    'employee_intro' => 'Peržiūrėkite konferencijas ir jų dalyvių sąrašus.',
+    'admin_intro' => 'Tvarkykite konferencijas ir naudotojų duomenis.',
+    'conference_archive_title' => 'Prieinamų svetainių praktika',
+    'conference_archive_description' => 'Praktinis seminaras apie visiems prieinamą internetą.',
+    'navigation' => 'Pagrindinė navigacija',
+    'manage_users' => 'Naudotojų valdymas',
+    'edit_user' => 'Redaguoti naudotoją',
+    'role' => 'Vaidmuo',
+    'actions' => 'Veiksmai',
+    'edit' => 'Redaguoti',
+    'edit_conference' => 'Redaguoti konferenciją',
+    'delete' => 'Ištrinti',
+    'confirm_delete' => 'Ar tikrai ištrinti šią konferenciją?',
+    'no_delete' => 'Įvykusios konferencijos ištrinti negalima.',
+    'register' => 'Registruotis',
+    'registered' => 'Esate užsiregistravę.',
+    'upcoming' => 'Būsimos konferencijos',
+    'saved' => 'Duomenys išsaugoti.',
+    'deleted' => 'Konferencija ištrinta.',
+    'empty' => 'Konferencijų nėra.',
+];

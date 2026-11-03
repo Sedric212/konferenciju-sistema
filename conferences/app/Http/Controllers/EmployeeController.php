@@ -3,27 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Data\ConferenceData;
+use App\Data\UserData;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $conferences = ConferenceData::all();
-
-        return view('employee.index', [
-            'conferences' => $conferences,
-        ]);
+        return view('employee.index', ['conferences' => ConferenceData::all()]);
     }
 
     public function show(int $id)
     {
-        $conference = collect(ConferenceData::all())
-            ->firstWhere('id', $id);
+        $conference = ConferenceData::find($id);
+        $conference['participants'] = array_map([UserData::class, 'find'], $conference['participants']);
 
-        abort_if($conference === null, 404);
-
-        return view('employee.show', [
-            'conference' => $conference,
-        ]);
+        return view('employee.show', compact('conference'));
     }
 }

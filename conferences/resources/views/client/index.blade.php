@@ -1,21 +1,11 @@
 @extends('layouts.app')
-
-@section('title', __('messages.client'))
-
+@section('title', __('messages.upcoming'))
 @section('content')
-    <h1>{{ __('messages.client') }}</h1>
-
-    @foreach ($conferences as $conference)
-        <article>
-            <h2>{{ $conference['title'] }}</h2>
-            <p>{{ $conference['description'] }}</p>
-            <p>
-                {{ $conference['date'] }}
-                {{ $conference['time'] }}
-            </p>
-            <a href="{{ route('client.show', ['id' => $conference['id']]) }}">
-        {{ __('messages.view_conference') }}
-    </a>
-        </article>
-    @endforeach
+<h1>{{ __('messages.upcoming') }}</h1>
+@forelse($conferences as $conference)
+<article class="event-card"><p class="eyebrow">{{ $conference['date'] }} · {{ $conference['time'] }}</p>
+<h2>{{ $conference['title'] }}</h2><p>{{ $conference['description'] }}</p>
+<div class="actions"><a class="btn btn-outline-primary" href="{{ route('client.show',$conference['id']) }}">{{ __('messages.view_conference') }}</a>
+@include('client.register')</div></article>
+@empty <p>{{ __('messages.empty') }}</p> @endforelse
 @endsection

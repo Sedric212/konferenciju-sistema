@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'email' => 'Įveskite tinkamą el. pašto adresą.',
     'required' => 'Šį lauką būtina užpildyti.',
     'string' => 'Įveskite tekstą.',
     'max' => [

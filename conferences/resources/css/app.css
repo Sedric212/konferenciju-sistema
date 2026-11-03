@@ -1,12 +1,3 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../**/*.vue";
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'flatpickr/dist/flatpickr.min.css';
+:root{--ink:#17332f;--accent:#176551}body{color:var(--ink);background:#f3f5ef;font-family:system-ui,sans-serif}.shell{width:min(1160px,94vw);margin:auto}header{background:#fff;border-bottom:1px solid #cbd5cb}.topbar,nav,.identity,.actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}.topbar{padding:1rem 0;justify-content:space-between}.brand{font-weight:800;text-decoration:none;color:var(--ink)}a{color:var(--accent)}nav a{font-size:.9rem;text-decoration:none}nav [aria-current]{border-bottom:2px solid var(--accent)}.identity,.credit{font-size:.85rem}.stage{margin:2rem auto;padding:clamp(1.2rem,4vw,3.5rem);background:#fff;border-radius:18px;overflow-x:auto;min-height:50vh}h1{font-weight:750;letter-spacing:-.04em;margin-bottom:1.4rem}h2{font-size:1.4rem}.eyebrow,.role-card small{font-weight:700;letter-spacing:.1em;color:var(--accent);font-size:.8rem}.role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(215px,100%),1fr));gap:1rem}.role-card,.event-card{border:1px solid #cad7ce;border-radius:12px;padding:1.4rem;margin-bottom:1rem}.role-card{background:#eff5f0;text-decoration:none;color:var(--ink)}.role-card h2{margin-top:1rem}.role-card:hover{background:#e1eee5}.credit{margin-top:2rem}.stage form:not(.inline){max-width:42rem}.stage input:not([type=hidden]),textarea{max-width:100%;width:100%;padding:.5rem;border:1px solid #869c90;border-radius:5px}.stage label,.stage dt{font-weight:650}.stage table{width:100%}.stage th,.stage td{padding:.65rem;text-align:left;border-bottom:1px solid #dce4dd}.stage a:not(.btn):focus-visible,button:focus-visible{outline:3px solid #2673a0}.btn-primary{--bs-btn-bg:#176551;--bs-btn-border-color:#176551;--bs-btn-hover-bg:#104e3f}.stage form+p,.stage form+a{margin-top:1rem}.stage strong{color:#99352a}.actions form{margin:0}

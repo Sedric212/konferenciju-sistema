@@ -4,56 +4,62 @@ namespace App\Data;
 
 class ConferenceData
 {
-       public static function all(): array
+    public static function all(): array
     {
-        return session('conferences') ?? self::initial();
+        return session('sd1.events') ?? self::initial();
+    }
+
+    private static function initial(): array
+    {
+        $events = [];
+        foreach ([
+            [1, 'web', '+14 days', '10:00', 'Jonas Jonaitis', 'Vilniaus g. 10, Vilnius', [2, 3]],
+            [2, 'security', '+21 days', '14:00', 'Ieva Petrauskaitė', 'Kauno g. 15, Vilnius', []],
+            [3, 'archive', '-7 days', '09:00', 'Tomas Jankus', 'Parko g. 5, Kaunas', [2]],
+        ] as [$id, $key, $offset, $time, $speaker, $address, $participants]) {
+            $events[$id] = [
+                'id' => $id, 'title' => __("messages.conference_{$key}_title"),
+                'description' => __("messages.conference_{$key}_description"),
+                'date' => now('Europe/Vilnius')->modify($offset)->toDateString(),
+                'time' => $time, 'speaker' => $speaker, 'address' => $address,
+                'participants' => $participants,
+            ];
+        }
+        session()->put('sd1.events', $events);
+
+        return $events;
+    }
+
+    public static function upcoming(array $event): bool
+    {
+        return now('Europe/Vilnius')->format('Y-m-d H:i') < $event['date'].' '.$event['time'];
+    }
+
+    public static function find(int $id): array
+    {
+        return self::all()[$id] ?? abort(404);
     }
 
     public static function add(array $data): void
     {
-        $conferences = self::all();
-
-        $data['id'] = (collect($conferences)->max('id') ?? 0) + 1;
-        $data['participants'] = [];
-
-        $conferences[] = $data;
-        session()->put('conferences', $conferences);
+        $events = self::all();
+        $id = session('sd1.next_id', 4);
+        $events[$id] = $data + ['id' => $id, 'participants' => []];
+        session()->put(['sd1.events' => $events, 'sd1.next_id' => $id + 1]);
     }
-    
-private static function initial(): array
+
+    public static function update(int $id, array $data): void
     {
-        return [
-            [
-                'id' => 1,
-                'title' => __('messages.conference_web_title'),
-                'description' => __('messages.conference_web_description'),
-                'speaker' => 'Jonas Jonaitis',
-                'date' => '2026-12-10',
-                'time' => '10:00',
-                'address' => 'Vilniaus g. 10, Vilnius',
-                'participants' => [
-                    [
-                        'first_name' => 'Mantas',
-                        'last_name' => 'Kazlauskas',
-                        'email' => 'mantas@example.com',
-                    ],
-                    [
-                        'first_name' => 'Gabija',
-                        'last_name' => 'Petrauskaitė',
-                        'email' => 'gabija@example.com',
-                    ],
-                ],
-            ],
-            [
-                'id' => 2,
-                'title' => __('messages.conference_security_title'),
-                'description' => __('messages.conference_security_description'),
-                'speaker' => 'Ieva Petrauskaitė',
-                'date' => '2026-12-15',
-                'time' => '14:00',
-                'address' => 'Kauno g. 15, Vilnius',
-                'participants' => [],
-            ],
-        ];
+        $events = self::all();
+        $events[$id] = array_replace(self::find($id), $data);
+        session()->put('sd1.events', $events);
+    }
+
+    public static function remove(int $id): void
+    {
+        abort_unless(self::upcoming(self::find($id)), 403, __('messages.no_delete'));
+        $events = self::all();
+        unset($events[$id]);
+        session()->put('sd1.events', $events);
     }
 }

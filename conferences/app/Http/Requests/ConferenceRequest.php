@@ -14,12 +14,12 @@ class ConferenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'speaker'     => ['required', 'string', 'max:255'],
-            'date'        => ['required', 'date_format:Y-m-d'],
-            'time'        => ['required', 'date_format:H:i'],
-            'address'     => ['required', 'string', 'max:255'],
+            'speaker' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'date_format:Y-m-d'],
+            'time' => ['required', 'date_format:H:i'],
+            'address' => ['required', 'string', 'max:255'],
         ];
     }
 }
