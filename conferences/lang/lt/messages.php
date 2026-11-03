@@ -36,4 +36,12 @@ return [
     'first_name' => 'Vardas',
     'last_name' => 'Pavardė',
     'email' => 'El. paštas',
-];
+
+    'manage_conferences' => 'Konferencijų valdymas',
+
+       'create_conference' => 'Sukurti konferenciją',
+    'description' => 'Aprašymas',
+    'speakers' => 'Lektoriai',
+    'save' => 'Išsaugoti',
+   
+    ];

@@ -4,7 +4,23 @@ namespace App\Data;
 
 class ConferenceData
 {
-    public static function all(): array
+       public static function all(): array
+    {
+        return session('conferences') ?? self::initial();
+    }
+
+    public static function add(array $data): void
+    {
+        $conferences = self::all();
+
+        $data['id'] = (collect($conferences)->max('id') ?? 0) + 1;
+        $data['participants'] = [];
+
+        $conferences[] = $data;
+        session()->put('conferences', $conferences);
+    }
+    
+private static function initial(): array
     {
         return [
             [

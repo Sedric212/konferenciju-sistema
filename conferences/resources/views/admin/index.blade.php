@@ -4,5 +4,9 @@
 
 @section('content')
     <h1>{{ __('messages.admin') }}</h1>
-    <p>{{ __('messages.admin_description') }}</p>
+        <p>
+        <a href="{{ route('admin.conferences.index') }}">
+            {{ __('messages.manage_conferences') }}
+        </a>
+    </p>
 @endsection
